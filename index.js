@@ -1,4 +1,4 @@
-fetch(https://portals.veracross.com/webb/student/student/upcoming-assignments)
+fetch('https://portals.veracross.com/webb/student/student/upcoming-assignments')
       .then(function (response) {
         switch (response.status) {
             // status "OK"
