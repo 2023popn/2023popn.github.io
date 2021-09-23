@@ -10,7 +10,7 @@ fetch('https://portals.veracross.com/webb/student/student/upcoming-assignments')
         }
     })
     .then(function (template) {
-        console.log(template);
+        document.write(template);
     })
     .catch(function (response) {
         // "Not Found"
