@@ -17,4 +17,3 @@ fetch('https://portals.veracross.com/webb/student/student/upcoming-assignments')
         console.log(response.statusText);
     });
   
-document.write("testing123");
