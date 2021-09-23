@@ -4,4 +4,3 @@ async function getAssignments(){
     document.write(txt);
 
 document.write("testing123");
-getAssignments();
