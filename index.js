@@ -20,4 +20,4 @@ function getAssignments(){
           });
 }
 
-document.addEventListener("DOMContentLoaded", getAssignments);
+document.addEventListener("DOMContentLoaded", getAssignments());
