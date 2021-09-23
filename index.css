@@ -1,0 +1,43 @@
+body{
+    background: #E5E5E5;
+}
+
+header {
+    font-size: 50;
+    background: #FFFFFF;
+    margin: 20;
+}
+
+article{
+    background: #F2F2F2;
+    padding: 2%;
+    align-self: center;
+    width: 70%;
+    float: left;
+    margin-left: 20;
+}
+
+section {
+    background: #FFFFFF;
+    width: 90%;
+    border-radius: 15px;
+    padding: 10;
+    margin: 2%;
+}
+
+aside {
+    background: #FFFFFF;
+    float: right;
+    width: 20%;
+    padding: 10;
+    margin: 10;
+    border-radius: 15px;
+}
+
+#assignments a{
+    font-size: 50;
+}
+
+footer{
+    clear: both;
+}
