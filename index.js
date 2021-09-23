@@ -1,3 +1,5 @@
+Access-Control-Allow-Origin: *;
+
 fetch('https://portals.veracross.com/webb/student/student/upcoming-assignments')
       .then(function (response) {
         switch (response.status) {
