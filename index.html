@@ -2,9 +2,9 @@
 <html>
     <head>
         <title>VeraNav</title>
-        <link rel="stylesheet" href="index.css">
-        <style>
-        </style>
+        <link rel="stylesheet" href="VN.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="VN.js"></script>`
     </head>
     
     <body>
@@ -12,18 +12,19 @@
         <header>
             VaraNav
         </header>
-        <div>
-            <button id="notif">Click to see all upcoming assignments</button>
-            <script src="index.js"></script>
-        </div>
         <article>
             <section id="assignments">
-                <a>Assignments</a>
-                <ul>
-                    <li>Homework Calendar</li>
-                    <li>Dropbox</li>
-                    <li>Assignments List View</li>
-                </ul>
+                <div class="link" id="homeworkCalendar">
+                    <a href="https://portals.veracross.com/webb/student/student/upcoming-assignments">Homework Calendar</a>
+                </div>
+                <hr>
+                <div class="link">
+                    <a href="https://portals.veracross.com/webb/student/submit-assignments">Dropbox</a>
+                </div>
+                <hr>
+                <div class="link">
+                    <a href="https://portals.veracross.com/webb/student/student/overview">Class List</a>
+                </div>
             </section>
             <section id="schedules">
                 <ul>
@@ -57,6 +58,9 @@
                 <li>Drive</li>
                 <li>Calendar</li>
             </ul>
+        </aside>
+        <aside id="lunch">
+            Lunch Menu
         </aside>
         <footer>
             Insert text here
