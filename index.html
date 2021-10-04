@@ -2,68 +2,193 @@
 <html>
     <head>
         <title>VeraNav</title>
-        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="VN.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="index.js"></script>`
+        <script src="VN.js"></script>
     </head>
     
     <body>
         
         <header>
-            VaraNav
+            <div id="left">
+                <div id="imgcontainer">
+                    <img src='https://i.postimg.cc/5YsQbn5M/veranav.png' border='0' alt='veranav' id="logo"/>
+                </div>
+                <div id="title">
+                    <span>VeraNav</span>
+                </div>
+            </div>
+            <div id="contact">
+                <a href="https://github.com/2023popn" id="github">
+                    <div>
+                        <span>My GitHub</span>
+                    </div>
+                </a>
+                <div>
+                    <span>Email: 2023popn@webbstudent.org</span>
+                </div>
+            </div>
         </header>
         <article>
             <section id="assignments">
-                <div class="link" id="homeworkCalendar">
-                    <a href="https://portals.veracross.com/webb/student/student/upcoming-assignments">Homework Calendar</a>
-                </div>
-                <hr>
                 <div class="link">
-                    <a href="https://portals.veracross.com/webb/student/submit-assignments">Dropbox</a>
+                    <a href="https://portals.veracross.com/webb/student/student/upcoming-assignments">
+                        <div>
+                            <span class="linktext">Homework Schedule</span>
+                        </div>
+                    </a>
                 </div>
-                <hr>
                 <div class="link">
-                    <a href="https://portals.veracross.com/webb/student/student/overview">Class List</a>
+                    <a href="https://portals.veracross.com/webb/student/submit-assignments">
+                        <div>
+                            <span class="linktext">Dropbox</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="link">
+                    <a href="https://portals.veracross.com/webb/student/student/overview">
+                        <div>
+                            <span class="linktext">Class List</span>
+                        </div>
+                    </a>
                 </div>
             </section>
             <section id="schedules">
-                <ul>
-                    <li>Daily Schedule</li>
-                    <li>High School Calendar</li>
-                </ul>
+                <div class="link">
+                    <a href="https://portals.veracross.com/webb/student/student/daily-schedule?type=student">
+                        <div>
+                            <span>Daily Schedule</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="link">
+                    <a href="https://portals.veracross.com/webb/student/calendar/student">
+                        <div>
+                            <span>Upper School Calendar</span>
+                        </div>
+                    </a>
+                </div>
             </section>
             <section id="directories">
-                Search Directories
-                <form>
-                    <select>
-                        <option>Students</option>
-                        <option>Faculty & Staff</option>
-                    </select>
-                    <input type="text" name="dirSearch"/>
-                    <input type="submit" value="Submit"/>
-                </form>
+                <div id="formlabel" class="dirclass">
+                    <a>Search Directories</a>
+                </div>
+                <div class="dirclass">
+                    <form id="form">
+                        <select id="directory">
+                            <option value="students">Students</option>
+                            <option value="faculty-staff">Faculty & Staff</option>
+                        </select>
+                        <input type="text" id="firstname" placeholder="First Name"/>
+                        <input type="text" id="lastname" placeholder="Last Name"/>
+                        <button id="btn" type="button">Search</button>
+                    </form>
+                </div>
+                <script>
+                    
+                    document.getElementById("btn").onclick = submitForm;
+                    
+                    function submitForm(){
+                        var dirname = document.getElementById("directory");
+                        var firstname = document.getElementById("firstname").value;
+                        var lastname = document.getElementById("lastname").value;
+                        alert(dirname.value);
+                        alert(firstname);
+                        alert(lastname);
+                        
+                        if(dirname.value == "students"){
+                            var link = "https://portals.veracross.com/webb/student/directory/1?utf8=%E2%9C%93&directory_entry%5Bfirst_name%5D=" + firstname + "&directory_entry%5Blast_name%5D=" + lastname + "&commit=Search";
+                            alert(link);
+                            
+                            window.open(link);
+                        }
+                        else if(dirname.value == "faculty-staff"){
+                            var link = "https://portals.veracross.com/webb/student/directory/4?utf8=%E2%9C%93&directory_entry%5Bfirst_name%5D" + firstname + "=&directory_entry%5Blast_name%5D" + lastname + "=&commit=Search";
+                            alert(link);
+                            
+                            window.open(link);
+                        }
+                    }
+                </script>
             </section>
         </article>
-        <aside id="messages">
-            Messages
-        </aside>
-        <aside id="library">
-            Upper School Library
-        </aside>
-        <aside id="google">
-            Google Suite
-            <ul>
-                <li>Classroom</li>
-                <li>Gmail</li>
-                <li>Drive</li>
-                <li>Calendar</li>
-            </ul>
-        </aside>
-        <aside id="lunch">
-            Lunch Menu
+        <aside>
+            <div id="messages" class="asideclass">
+                <a href="https://portals.veracross.com/webb/student/messages">
+                    <div>
+                        <span>Messages</span>
+                    </div>
+                </a>
+            </div>
+            <div id="library" class="asideclass">
+                <a href="https://webbschool.libguides.com/upperschool">
+                    <div>
+                        <span>Upper School Library</span>
+                    </div>
+                </a>
+            </div>
+            <div id="google">
+                <div id="googlegrid">
+                    <div class="griditem">
+                        <a href="https://classroom.google.com/u/0/h">
+                            <span>Classroom</span>
+                            <img src="https://lh3.googleusercontent.com/EUHFjMpMj-UPEu6jfEEP8TPV7QxQerc-n_qulHi3MFPnK_63i5ldHApJsutq7wXqNmN9V2rmk9swsQ9I0eddAv77HIO4uv6gKt8haNAMqjiM9pqNu9w" alt="Classroom" id="classroom">
+                        </a>
+                    </div>
+                    <div class="griditem">
+                        <a href="https://mail.google.com/mail/u/0/#inbox">
+                            <span>Gmail</span>
+                            <img src="https://lh3.googleusercontent.com/0rpHlrX8IG77awQMuUZpQ0zGWT7HRYtpncsuRnFo6V3c8Lh2hPjXnEuhDDd-OsLz1vua4ld2rlUYFAaBYk-rZCODmi2eJlwUEVsZgg" alt="Gmail" id="gmail">
+                        </a>
+                    </div>
+                    <div class="griditem">
+                        <a href="https://drive.google.com/drive/u/0/my-drive">
+                            <span>Drive</span>
+                            <img src="https://lh3.googleusercontent.com/rCwHBRBJV4wFiEIN_Mlboj94_TGJxyJtBh-MBFL4y1aZdO4hb7_Uc_PpXRyAoN7O9m_Zc1wSyp3H1vsnb829QE7t9KyGNJY9A1a3QQ" alt="Google Drive" id="drive">
+                        </a>
+                    </div>
+                    <div class="griditem">
+                        <a href="https://calendar.google.com/calendar/u/0/r">
+                            <span>Calendar</span>
+                            <img src="https://lh3.googleusercontent.com/K0vgpnn9Vour8ByU3htR3ou5Cx70Me-lW_51VEAIS5dfzXCQ0otXakVuPiQVc0V6qcf9aP_vkVul59airN27m3mttf4zQ1TPv4MVrw" alt="Calendar" id="calendar">
+                        </a>
+                    </div>
+                    <div class="griditem">
+                        <a href="https://docs.google.com/document/u/0/?tgif=d">
+                            <span>Docs</span>
+                            <img src="https://lh3.googleusercontent.com/1DECuhPQ1y2ppuL6tdEqNSuObIm_PW64w0mNhm3KGafi40acOJkc4nvsZnThoDKTH8gWyxAnipJmvCiszX8R6UAUu1UyXPfF13d7" alt="Google Docs" id="docs">
+                        </a>
+                    </div>
+                    <div class="griditem">
+                        <a href="https://docs.google.com/spreadsheets/u/0/?tgif=d">
+                           <span>Sheets</span>
+                            <img src="https://lh3.googleusercontent.com/yCF7mTvXRF_EhDf7Kun5_-LMYTbD2IL-stx_D97EzpACfhpGjY_Frx8NZw63rSn2dME0v8-Im49Mh16htvPAGmEOMhiTxDZzo6rB7MY" alt="Google Sheets" id="sheets"> 
+                        </a>
+                    </div>
+                    <div class="griditem">
+                        <a href="https://docs.google.com/forms/u/0/?tgif=d">
+                            <span>Forms</span>
+                            <img src="https://lh3.googleusercontent.com/qT-mnpsMIcop6f82s52RiUSQTfhP5TqbS9eNovaITMbjEIAlIxuW5m3lI2LxLkwox92YIl7rPIzsI0oxUzLPx89KyPabgiLAPeVcjg" alt="Google Forms">
+                        </a>
+                    </div>
+                    <div class="griditem">
+                        <a href="https://docs.google.com/presentation/u/0/?tgif=d">
+                            <span>Slides</span>
+                            <img src="https://lh3.googleusercontent.com/kTqndvbnimlnn1xrp-ew5bNI0D1u3JwZTDwvlxzSZEiO7rek5yQBePvWxTq3a1_KYb5Amj34-Y-8Bw81GsekwL7Ayz9CE6dMVN84tI0" alt="Google Slides" id="slides">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="lunch" class="asideclass">
+                <a href="https://www.webbschool.org/life-at-webb/webb-dining">
+                    <div>
+                        <span>Lunch Menu</span>
+                    </div>
+                </a>
+            </div>
         </aside>
         <footer>
-            Insert text here
+            <p>This site was developed by Nathan Pope with troubleshooting and testing help from Dmitri Kalinin and Noah Thomasson. I would highly encourage everyone to download the Chrome extension they made in collaboration with the Webb School Computer Science Club, <a href="https://github.com/Webb-School-Computer-Science-Club/Verallel">Verallel</a>. Instructions for download are located below the list of files. Firefox download (by Tate Reed) is located <a href="https://github.com/Webb-School-Computer-Science-Club/Verallel-Firefox">here</a>.</p>
         </footer>
     </body>
 </html>
