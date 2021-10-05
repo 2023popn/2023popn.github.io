@@ -36,17 +36,14 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    text-decoration: none;
 }
 
 #github{
     color: #E8E8E8;
-    text-decoration: none;
 }
 
 #github:visited{
     color: #E8E8E8;
-    text-decoration: none;
 }
 
 #imgcontainer{
