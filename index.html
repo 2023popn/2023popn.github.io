@@ -91,19 +91,17 @@
                         var dirname = document.getElementById("directory");
                         var firstname = document.getElementById("firstname").value;
                         var lastname = document.getElementById("lastname").value;
-                        alert(dirname.value);
-                        alert(firstname);
-                        alert(lastname);
+                        
                         
                         if(dirname.value == "students"){
                             var link = "https://portals.veracross.com/webb/student/directory/1?utf8=%E2%9C%93&directory_entry%5Bfirst_name%5D=" + firstname + "&directory_entry%5Blast_name%5D=" + lastname + "&commit=Search";
-                            alert(link);
+                            
                             
                             window.open(link);
                         }
                         else if(dirname.value == "faculty-staff"){
                             var link = "https://portals.veracross.com/webb/student/directory/4?utf8=%E2%9C%93&directory_entry%5Bfirst_name%5D" + firstname + "=&directory_entry%5Blast_name%5D" + lastname + "=&commit=Search";
-                            alert(link);
+                            
                             
                             window.open(link);
                         }
