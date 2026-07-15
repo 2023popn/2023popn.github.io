@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nathan Pope — Project Case Studies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #182420;
+    --bg-2: #1f2f29;
+    --line: #3a4f46;
+    --copper: #c9773f;
+    --copper-bright: #e0954f;
+    --sage: #8fae8b;
+    --paper: #eee8dc;
+    --paper-dim: #b9baaf;
+    --paper-muted: #9aa89c;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--paper);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--copper); color:#182420; }
+  h1,h2,h3{
+    font-family:'Big Shoulders Display', sans-serif;
+    text-transform:uppercase;
+    margin:0;
+    letter-spacing:0.01em;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  a{ color:var(--copper-bright); }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:30;
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 18px 6vw;
+    background:rgba(24,36,32,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .brand{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800; font-size:1.15rem; letter-spacing:0.04em;
+    text-transform:uppercase; color:var(--paper);
+  }
+  nav .brand span{ color:var(--copper-bright); }
+  nav .back{
+    color:var(--paper-dim); text-decoration:none; font-size:0.8rem;
+    letter-spacing:0.06em; text-transform:uppercase; font-family:'IBM Plex Mono', monospace;
+    display:flex; align-items:center; gap:8px;
+  }
+  nav .back:hover{ color:var(--copper-bright); }
+
+  /* ---------- index header ---------- */
+  header.intro{
+    padding: 9vh 6vw 6vh;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; color:var(--sage);
+    font-size:0.8rem; letter-spacing:0.15em; text-transform:uppercase;
+    display:flex; align-items:center; gap:10px; margin-bottom:20px;
+  }
+  .eyebrow .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--copper-bright); box-shadow:0 0 8px var(--copper-bright);
+  }
+  header.intro h1{
+    font-size:clamp(2.2rem, 6vw, 4.6rem); line-height:0.98; max-width:18ch;
+  }
+  header.intro p{
+    max-width:56ch; margin-top:22px; color:var(--paper-dim);
+    font-size:1.05rem; line-height:1.65;
+  }
+
+  /* jump index */
+  .jumpindex{
+    display:flex; flex-wrap:wrap; gap:10px; margin-top:36px;
+  }
+  .jumpindex a{
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem;
+    text-decoration:none; color:var(--paper-dim);
+    border:1px solid var(--line); padding:7px 14px;
+    text-transform:uppercase; letter-spacing:0.04em;
+  }
+  .jumpindex a:hover{ border-color:var(--copper); color:var(--copper-bright); }
+
+  /* ---------- case study blocks ---------- */
+  .case{
+    padding: 9vh 6vw;
+    border-bottom:1px solid var(--line);
+    scroll-margin-top:80px;
+  }
+  .case-grid{
+    display:grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap:60px;
+  }
+  @media (max-width:900px){ .case-grid{ grid-template-columns:1fr; } }
+
+  .case-head{ margin-bottom:34px; }
+  .case-head .tag{
+    font-family:'IBM Plex Mono', monospace; color:var(--copper-bright);
+    font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase;
+  }
+  .case-head h2{
+    font-size:clamp(1.8rem, 4.4vw, 3.2rem); margin-top:8px;
+  }
+  .case-head .role{
+    margin-top:10px; color:var(--paper-muted);
+    font-family:'IBM Plex Mono', monospace; font-size:0.85rem;
+  }
+
+  .block{ margin-bottom:30px; }
+  .block .label{
+    font-family:'IBM Plex Mono', monospace; color:var(--sage);
+    font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase;
+    margin-bottom:10px; display:block;
+  }
+  .block p{
+    color:var(--paper-dim); line-height:1.7; font-size:0.98rem; margin:0 0 12px;
+  }
+  .block p strong{ color:var(--paper); }
+
+  /* sidebar */
+  .sidebar{
+    border:1px solid var(--line);
+    background:var(--bg-2);
+    padding:26px 24px;
+    height:fit-content;
+    position:sticky; top:90px;
+  }
+  .sidebar h4{
+    font-family:'IBM Plex Mono', monospace; text-transform:uppercase;
+    font-size:0.72rem; letter-spacing:0.1em; color:var(--paper-muted);
+    margin-bottom:16px;
+  }
+  .specs{ display:grid; gap:16px; margin-bottom:22px; }
+  .specs .spec .num{
+    font-family:'IBM Plex Mono', monospace; color:var(--copper-bright);
+    font-size:1.3rem; display:block; line-height:1.2;
+  }
+  .specs .spec .lbl{
+    font-family:'IBM Plex Mono', monospace; color:var(--paper-muted);
+    font-size:0.7rem; text-transform:uppercase; letter-spacing:0.05em;
+  }
+  .tools{
+    display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;
+  }
+  .tools span{
+    font-family:'IBM Plex Mono', monospace; font-size:0.7rem;
+    border:1px solid var(--line); padding:5px 10px; color:var(--paper-dim);
+  }
+  .divider{ border-top:1px solid var(--line); margin:20px 0; }
+
+  .diagram-box{
+    border:1px solid var(--line); background:var(--bg);
+    padding:16px; margin-top:6px;
+  }
+  .diagram-box .cap{
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem;
+    color:var(--paper-muted); text-transform:uppercase; letter-spacing:0.05em;
+    margin-top:10px;
+  }
+
+  .status-pill{
+    display:inline-block; font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase;
+    border:1px solid var(--sage); color:var(--sage); padding:4px 10px;
+    margin-top:14px;
+  }
+
+  footer{
+    padding:8vh 6vw 6vh;
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;
+  }
+  footer h2{ font-size:clamp(1.8rem,4.5vw,2.8rem); max-width:18ch; }
+  footer .contact{
+    font-family:'IBM Plex Mono', monospace; color:var(--paper-dim);
+    font-size:0.9rem; line-height:2;
+  }
+  footer .contact a{ color:var(--paper); text-decoration:none; border-bottom:1px solid var(--copper); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">POPE<span>—NP</span></div>
+  <a class="back" href="#">← Back to overview</a>
+</nav>
+
+<header class="intro">
+  <div class="eyebrow"><span class="dot"></span> case studies</div>
+  <h1>How each system got built.</h1>
+  <p>The homepage shows the headline numbers. This page is the longer version — the constraint I was handed, what I actually did about it, and what came out the other side. Six projects, spanning batteries, motors, controls, and mechanisms.</p>
+  <div class="jumpindex">
+    <a href="#halfpack">01 · Half-Pack Battery</a>
+    <a href="#scara">02 · SCARA Plasma Cutter</a>
+    <a href="#finmotor">03 · Paddleboard Fin</a>
+    <a href="#ebike">04 · E-Bike Conversion</a>
+    <a href="#shockwave">05 · Shockwave Motors</a>
+    <a href="#endeavor">06 · Endeavor Composites</a>
+  </div>
+</header>
+
+<!-- 01 HALF-PACK -->
+<section class="case" id="halfpack">
+  <div class="case-grid">
+    <div>
+      <div class="case-head">
+        <div class="tag">01 / Battery Systems</div>
+        <h2>Half-Pack Battery</h2>
+        <div class="role">Purdue EV Grand Prix — Design Lead</div>
+        <span class="status-pill">● Complete — 1st place, efficiency</span>
+      </div>
+
+      <div class="block">
+        <span class="label">The Constraint</span>
+        <p>Our EV Grand Prix competition car was carrying more battery pack than the car — or the rules — needed. <strong>Every extra kilogram of pack came directly out of the car's efficiency score</strong>, and the existing enclosure design was built around off-the-shelf brackets that didn't match our actual cell layout.</p>
+      </div>
+
+      <div class="block">
+        <span class="label">The Approach</span>
+        <p>I redesigned the pack enclosure and structural mounting from scratch, rather than adapting the old one. Structural brackets and cell retention features that didn't need to bear major load were moved to 3D-printed components, while load-bearing members stayed in sheet-formed aluminum — splitting the structure by <strong>which parts actually needed metal and which just needed to hold shape</strong>.</p>
+        <p>I hand-fabricated the sheet metal enclosure (cutting, bending, and fastening), then iterated the printed brackets over several revisions to dial in tolerances against the real cells rather than datasheet dimensions.</p>
+      </div>
+
+      <div class="block">
+        <span class="label">The Result</span>
+        <p>The finished pack came in at roughly <strong>half the weight</strong> of the previous design (##.# kg vs ##.# kg) while keeping full capacity (## kWh, ## cells), and the car placed <strong>1st in efficiency</strong> at competition (X% ahead of 2nd place). It's the project I'd point to first for evidence I can take a system from "what if we cut mass here" to a physically validated part.</p>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <h4>Spec Sheet</h4>
+      <div class="specs">
+        <div class="spec"><span class="num">−50%</span><span class="lbl">Pack weight vs. baseline</span></div>
+        <div class="spec"><span class="num">##.# kg</span><span class="lbl">Final pack weight</span></div>
+        <div class="spec"><span class="num">## kWh</span><span class="lbl">Total capacity</span></div>
+        <div class="spec"><span class="num">1st</span><span class="lbl">Place — efficiency, EV Grand Prix</span></div>
+        <div class="spec"><span class="num">Al + PETG</span><span class="lbl">Sheet metal + 3D-printed structure</span></div>
+        <div class="spec"><span class="num">X weeks</span><span class="lbl">Design-to-competition timeline</span></div>
+      </div>
+      <div class="divider"></div>
+      <h4>Tools</h4>
+      <div class="tools">
+        <span>Fusion 360</span><span>Sheet Metal Fab</span><span>FDM 3D Printing</span><span>Hand Tools</span>
+      </div>
+      <div class="diagram-box">
+        <svg viewBox="0 0 300 140" width="100%" height="120">
+          <rect x="20" y="90" width="60" height="35" fill="none" stroke="#3a4f46"/>
+          <rect x="30" y="60" width="40" height="30" fill="none" stroke="#8fae8b" stroke-dasharray="3 3"/>
+          <text x="50" y="132" fill="#9aa89c" font-family="IBM Plex Mono" font-size="8" text-anchor="middle">BASELINE</text>
+          <path d="M100,105 L140,105" stroke="#c9773f" stroke-width="1.5" marker-end="url(#arrow)"/>
+          <rect x="160" y="100" width="40" height="25" fill="none" stroke="#e0954f" stroke-width="1.5"/>
+          <text x="180" y="132" fill="#e0954f" font-family="IBM Plex Mono" font-size="8" text-anchor="middle">HALF-PACK</text>
+          <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#c9773f"/></marker></defs>
+        </svg>
+        <div class="cap">Enclosure footprint, before / after</div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 02 SCARA -->
+<section class="case" id="scara">
+  <div class="case-grid">
+    <div>
+      <div class="case-head">
+        <div class="tag">02 / Robotics & Mechanisms</div>
+        <h2>SCARA Plasma Cutter</h2>
+        <div class="role">Multi-University Industry Collaboration</div>
+        <span class="status-pill">● Ongoing</span>
+      </div>
+
+      <div class="block">
+        <span class="label">The Constraint</span>
+        <p>An industry partner needed a low-cost SCARA-configuration arm capable of guiding a plasma cutting head across a work surface with repeatable precision — a project scoped and coordinated across multiple university teams, meaning the mechanical spec had to be agreed on before any team could start building independently.</p>
+      </div>
+
+      <div class="block">
+        <span class="label">The Approach</span>
+        <p>I've worked on the 2-degree-of-freedom mechanical arm design: joint geometry, link proportions, and the tradeoffs between reach, rigidity, and the plasma torch's own weight and heat. Because the build is split across schools, a lot of the work has been making sure the mechanical interface points are unambiguous enough that another team's electronics or controls work can bolt on without surprises.</p>
+      </div>
+
+      <div class="block">
+        <span class="label">The Result (so far)</span>
+        <p>The arm has gone through several prototype revisions (rev. X) as tolerances and torch clearance issues surfaced, with positioning repeatability currently around ±#.# mm and a working reach of ## cm. This one's still active — I'll update this section with final performance numbers (cycle time, payload rating, cost per unit) once the current build phase wraps.</p>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <h4>Spec Sheet</h4>
+      <div class="specs">
+        <div class="spec"><span class="num">2-DOF</span><span class="lbl">SCARA configuration</span></div>
+        <div class="spec"><span class="num">## cm</span><span class="lbl">Working reach</span></div>
+        <div class="spec"><span class="num">±#.# mm</span><span class="lbl">Positioning repeatability</span></div>
+        <div class="spec"><span class="num"># kg</span><span class="lbl">Payload / torch weight capacity</span></div>
+        <div class="spec"><span class="num">Multi-univ.</span><span class="lbl">Collaborative build</span></div>
+      </div>
+      <div class="divider"></div>
+      <h4>Tools</h4>
+      <div class="tools">
+        <span>Onshape</span><span>FEA</span><span>Iterative Prototyping</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 03 PADDLEBOARD FIN -->
+<section class="case" id="finmotor">
+  <div class="case-grid">
+    <div>
+      <div class="case-head">
+        <div class="tag">03 / Marine Propulsion</div>
+        <h2>Electric Paddleboard Fin</h2>
+        <div class="role">Independent Build</div>
+        <span class="status-pill">● Complete</span>
+      </div>
+
+      <div class="block">
+        <span class="label">The Constraint</span>
+        <p>I wanted powered thrust on a standard paddleboard without bolting on an obviously separate motor unit — which meant fitting a brushless DC motor and its battery into roughly the volume of a fin, and doing it in a housing that would be fully submerged and still keep water out of anything electrical.</p>
+      </div>
+
+      <div class="block">
+        <span class="label">The Approach</span>
+        <p>I built the housing around a brushless DC motor with a sealed battery compartment, working through gasket selection, potting, and cable-entry sealing to get a reliable waterproof boundary in a shape that still had to cut cleanly through water. Component placement was its own puzzle — everything had to fit inside a fin's footprint, with weight distributed so it didn't fight the board's handling.</p>
+      </div>
+
+      <div class="block">
+        <span class="label">The Result</span>
+        <p>A working sealed, motorized fin that mounts like a standard fin box component, producing roughly # lbs of thrust and a top assisted speed around # mph, with a runtime of about ## minutes per charge. It's a small build, but it's a complete one — motor selection, sealing, battery integration, and mounting, solved end to end on my own.</p>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <h4>Spec Sheet</h4>
+      <div class="specs">
+        <div class="spec"><span class="num">BLDC</span><span class="lbl">Brushless DC motor, ### W</span></div>
+        <div class="spec"><span class="num"># lbs</span><span class="lbl">Static thrust</span></div>
+        <div class="spec"><span class="num">## min</span><span class="lbl">Runtime per charge</span></div>
+        <div class="spec"><span class="num">Sealed</span><span class="lbl">Waterproof battery + housing</span></div>
+        <div class="spec"><span class="num">Fin-form</span><span class="lbl">Standard fin box mount</span></div>
+      </div>
+      <div class="divider"></div>
+      <h4>Tools</h4>
+      <div class="tools">
+        <span>CAD Modeling</span><span>Gasket Sealing</span><span>Potting</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 04 E-BIKE -->
+<section class="case" id="ebike">
+  <div class="case-grid">
+    <div>
+      <div class="case-head">
+        <div class="tag">04 / Drivetrain</div>
+        <h2>Electric Bike Conversion</h2>
+        <div class="role">Independent Build</div>
+        <span class="status-pill">● Ongoing</span>
+      </div>
+
+      <div class="block">
+        <span class="label">The Constraint</span>
+        <p>Standard hub-motor e-bike kits are simple to bolt on, but they don't teach you much about drivetrain integration. I wanted a mid-drive conversion instead — the motor driving through the bike's existing gearing rather than the wheel directly, which meant solving belt tensioning, motor mounting, and controller placement instead of just wiring a kit together.</p>
+      </div>
+
+      <div class="block">
+        <span class="label">The Approach</span>
+        <p>I'm modeling the mounting bracket and belt drive layout in Onshape, borrowing parts of the drivetrain thinking from e-skate builds (belt pitch, pulley sizing, tensioner geometry) and adapting them to a bicycle frame's mounting points and clearances.</p>
+      </div>
+
+      <div class="block">
+        <span class="label">The Result (so far)</span>
+        <p>Bracket and belt layout design is in progress, targeting a ### W motor, ##:## belt reduction ratio, and roughly ## mile range per charge. This project is more about the drivetrain fundamentals than a finished product — it's the one where I'm deliberately building slower to understand mid-drive integration properly before I need it on something bigger.</p>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <h4>Spec Sheet</h4>
+      <div class="specs">
+        <div class="spec"><span class="num">### W</span><span class="lbl">Target motor power</span></div>
+        <div class="spec"><span class="num">##:##</span><span class="lbl">Belt reduction ratio</span></div>
+        <div class="spec"><span class="num">## mi</span><span class="lbl">Target range per charge</span></div>
+        <div class="spec"><span class="num">Mid-drive</span><span class="lbl">Motor position</span></div>
+        <div class="spec"><span class="num">Belt</span><span class="lbl">Drivetrain type</span></div>
+      </div>
+      <div class="divider"></div>
+      <h4>Tools</h4>
+      <div class="tools">
+        <span>Onshape</span><span>E-skate components</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 05 SHOCKWAVE -->
+<section class="case" id="shockwave">
+  <div class="case-grid">
+    <div>
+      <div class="case-head">
+        <div class="tag">05 / Structural Analysis & Testing</div>
+        <h2>Shockwave Motors</h2>
+        <div class="role">Mechanical Engineering Intern</div>
+        <span class="status-pill">● Complete</span>
+      </div>
+
+      <div class="block">
+        <span class="label">The Assignment</span>
+        <p>Shockwave needed structural confidence on motorcycle swingarm designs before committing to a build, plus real-world validation of motor controller behavior on a prototype trike — two different problems, one shared need for evidence before manufacturing.</p>
+      </div>
+
+      <div class="block">
+        <span class="label">The Approach</span>
+        <p>I ran FEA on swingarm geometry to check load paths and safety factors under expected riding loads, flagging where geometry changes would meaningfully cut weight without giving up strength. Separately, I reverse-engineered chassis geometry from an existing frame to build an accurate baseline model, and ran motor controller testing on a prototype trike to validate real-world performance against the design intent.</p>
+      </div>
+
+      <div class="block">
+        <span class="label">The Result</span>
+        <p>Structural analysis gave the team a documented basis for swingarm design decisions instead of relying on prior-generation geometry by default — identifying a safety factor of X.X under worst-case loading and a path to cut swingarm weight by roughly X% — and the controller testing surfaced real behavior differences from the spec sheet (response time off by X ms, current draw within X% of rated) — the kind of gap you only find by actually running the hardware.</p>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <h4>Spec Sheet</h4>
+      <div class="specs">
+        <div class="spec"><span class="num">FEA</span><span class="lbl">Swingarm structural analysis</span></div>
+        <div class="spec"><span class="num">X.X</span><span class="lbl">Minimum safety factor found</span></div>
+        <div class="spec"><span class="num">X%</span><span class="lbl">Potential weight reduction identified</span></div>
+        <div class="spec"><span class="num">Reverse-eng.</span><span class="lbl">Chassis geometry modeling</span></div>
+        <div class="spec"><span class="num">Bench + field</span><span class="lbl">Motor controller testing</span></div>
+        <div class="spec"><span class="num">X weeks</span><span class="lbl">Internship duration</span></div>
+      </div>
+      <div class="divider"></div>
+      <h4>Tools</h4>
+      <div class="tools">
+        <span>FEA</span><span>CAD Reverse-Engineering</span><span>Motor Controllers</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 06 ENDEAVOR -->
+<section class="case" id="endeavor" style="border-bottom:none;">
+  <div class="case-grid">
+    <div>
+      <div class="case-head">
+        <div class="tag">06 / Industrial Controls</div>
+        <h2>Endeavor Composites</h2>
+        <div class="role">Mechanical Engineering Intern</div>
+        <span class="status-pill">● Complete</span>
+      </div>
+
+      <div class="block">
+        <span class="label">The Assignment</span>
+        <p>A composites production line needed a PLC control system where none existed — no prior program to modify, no documented control cabinet wiring to inherit. Everything from logic to physical wiring had to be built from a blank slate.</p>
+      </div>
+
+      <div class="block">
+        <span class="label">The Approach</span>
+        <p>I wrote the ladder logic program from scratch on an AutomationDirect Click PLUS PLC, mapping out the sequence of operations the line actually needed rather than porting over a generic template. That meant rewiring the control cabinet to match the new program — running conductors, terminating connections, and validating each input/output against the ladder logic before commissioning.</p>
+      </div>
+
+      <div class="block">
+        <span class="label">The Result</span>
+        <p>A working, documented control system for a production line that previously had none — covering ## I/O points across the cabinet rewire — plus hands-on cabinet wiring experience that translates directly to any manufacturing floor with PLC-driven equipment. Commissioning cut manual process steps by roughly X% and line downtime for changeovers by about ## minutes per shift.</p>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <h4>Spec Sheet</h4>
+      <div class="specs">
+        <div class="spec"><span class="num">From Scratch</span><span class="lbl">PLC program + wiring</span></div>
+        <div class="spec"><span class="num">## I/O</span><span class="lbl">Points wired &amp; commissioned</span></div>
+        <div class="spec"><span class="num">Click PLUS</span><span class="lbl">AutomationDirect PLC</span></div>
+        <div class="spec"><span class="num">X%</span><span class="lbl">Reduction in manual process steps</span></div>
+        <div class="spec"><span class="num">X weeks</span><span class="lbl">Internship duration</span></div>
+      </div>
+      <div class="divider"></div>
+      <h4>Tools</h4>
+      <div class="tools">
+        <span>Ladder Logic</span><span>AutomationDirect Click PLUS</span><span>Control Cabinet Wiring</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<footer id="contact">
+  <h2>Want the full story on any of these?</h2>
+  <div class="contact">
+    nathanp2023@gmail.com<br>
+    <a href="#">Resume (PDF)</a><br>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+</body>
+</html>

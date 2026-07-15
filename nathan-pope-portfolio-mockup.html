@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nathan Pope — Mechanical Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #182420;
+    --bg-2: #1f2f29;
+    --line: #3a4f46;
+    --copper: #c9773f;
+    --copper-bright: #e0954f;
+    --sage: #8fae8b;
+    --paper: #eee8dc;
+    --paper-dim: #b9baaf;
+    --paper-muted: #9aa89c;
+    --radius: 2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--paper);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--copper); color:#182420; }
+
+  h1,h2,h3{
+    font-family:'Big Shoulders Display', sans-serif;
+    text-transform:uppercase;
+    margin:0;
+    letter-spacing:0.01em;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+
+  a{ color:var(--copper-bright); }
+
+  /* ---------- topo/circuit background ---------- */
+  .contours{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    opacity:0.35;
+    pointer-events:none;
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:20;
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 18px 6vw;
+    background:rgba(24,36,32,0.85);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .brand{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    font-size:1.15rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--paper);
+  }
+  nav .brand span{ color:var(--copper-bright); }
+  nav ul{
+    list-style:none; display:flex; gap:28px; margin:0; padding:0;
+  }
+  nav a{
+    color:var(--paper-dim);
+    text-decoration:none;
+    font-size:0.8rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  nav a:hover{ color:var(--copper-bright); }
+
+  /* ---------- hero ---------- */
+  header.hero{
+    position:relative;
+    padding: 12vh 6vw 10vh;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--sage);
+    font-size:0.8rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--copper-bright);
+    box-shadow:0 0 8px var(--copper-bright);
+  }
+  h1.title{
+    font-size: clamp(2.6rem, 7vw, 6rem);
+    line-height:0.95;
+    font-weight:800;
+    max-width:14ch;
+  }
+  h1.title em{
+    font-style:normal;
+    color:var(--copper-bright);
+  }
+  .hero-sub{
+    max-width:52ch;
+    margin-top:28px;
+    font-size:1.1rem;
+    line-height:1.6;
+    color:var(--paper-dim);
+  }
+  .hero-meta{
+    display:flex; gap:36px; margin-top:48px; flex-wrap:wrap;
+  }
+  .hero-meta div{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    color:var(--paper-muted);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    border-left:2px solid var(--copper);
+    padding-left:10px;
+  }
+  .hero-meta strong{
+    display:block;
+    color:var(--paper);
+    font-size:0.95rem;
+    font-family:'IBM Plex Sans', sans-serif;
+    text-transform:none;
+    letter-spacing:0;
+    margin-top:2px;
+  }
+
+  /* ---------- section shell ---------- */
+  section{ padding: 10vh 6vw; border-bottom:1px solid var(--line); position:relative; }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:56px; flex-wrap:wrap; gap:16px;
+  }
+  .section-head .label{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--sage);
+    font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase;
+  }
+  .section-head h2{
+    font-size:clamp(1.8rem,4vw,3rem);
+    margin-top:6px;
+  }
+  .section-head p{
+    max-width:38ch; color:var(--paper-muted); font-size:0.95rem; line-height:1.5;
+  }
+
+  /* ---------- projects ---------- */
+  .projects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .card{
+    background:var(--bg);
+    padding:32px 28px;
+    position:relative;
+    transition:background 0.25s ease;
+  }
+  .card:hover{ background:var(--bg-2); }
+  .card .idx{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--copper);
+    font-size:0.78rem;
+    letter-spacing:0.1em;
+  }
+  .card h3{
+    font-size:1.5rem;
+    margin-top:10px;
+    color:var(--paper);
+  }
+  .card .role{
+    color:var(--sage);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-top:6px;
+  }
+  .card p.desc{
+    color:var(--paper-dim);
+    font-size:0.92rem;
+    line-height:1.55;
+    margin-top:14px;
+  }
+  .spec-row{
+    display:flex; gap:22px; margin-top:20px; flex-wrap:wrap;
+    border-top:1px solid var(--line); padding-top:14px;
+  }
+  .spec{
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .spec .num{ color:var(--copper-bright); font-size:1.15rem; display:block; }
+  .spec .lbl{ color:var(--paper-muted); font-size:0.68rem; text-transform:uppercase; letter-spacing:0.06em; }
+
+  /* ---------- field notes / outdoors ---------- */
+  .fieldnotes{
+    display:grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  @media (max-width:800px){ .fieldnotes{ grid-template-columns:1fr; } }
+  .fieldnotes .copy p{
+    color:var(--paper-dim); line-height:1.7; font-size:1rem; margin-bottom:16px;
+  }
+  .fieldnotes .copy p strong{ color:var(--paper); }
+  .curve-box{
+    border:1px solid var(--line);
+    background:var(--bg-2);
+    padding:20px;
+  }
+  .curve-box .cap{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem; color:var(--paper-muted);
+    text-transform:uppercase; letter-spacing:0.06em;
+    margin-top:14px;
+  }
+
+  /* ---------- companies strip ---------- */
+  .targets{
+    display:flex; flex-wrap:wrap; gap:12px;
+  }
+  .chip{
+    border:1px solid var(--line);
+    padding:8px 16px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--paper-dim);
+    letter-spacing:0.04em;
+  }
+  .chip.on{
+    border-color:var(--copper);
+    color:var(--copper-bright);
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:8vh 6vw 6vh;
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;
+  }
+  footer h2{ font-size:clamp(2rem,5vw,3.4rem); max-width:16ch; }
+  footer .contact{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--paper-dim);
+    font-size:0.9rem;
+    line-height:2;
+  }
+  footer .contact a{ color:var(--paper); text-decoration:none; border-bottom:1px solid var(--copper); }
+</style>
+</head>
+<body>
+
+<svg class="contours" viewBox="0 0 1200 1400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8fae8b" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#8fae8b" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path d="M-50,300 C200,250 300,400 500,350 C700,300 800,150 1050,180" fill="none" stroke="url(#fade)" stroke-width="1.5"/>
+  <path d="M-50,380 C220,330 320,470 520,420 C720,370 810,230 1080,260" fill="none" stroke="url(#fade)" stroke-width="1.5"/>
+  <path d="M-50,460 C240,410 340,540 540,490 C740,440 820,310 1110,340" fill="none" stroke="url(#fade)" stroke-width="1.5"/>
+  <path d="M-50,540 C260,490 360,610 560,560 C760,510 830,390 1140,420" fill="none" stroke="url(#fade)" stroke-width="1.5"/>
+  <path d="M-50,620 C280,570 380,680 580,630 C780,580 840,470 1170,500" fill="none" stroke="url(#fade)" stroke-width="1.5"/>
+</svg>
+
+<nav>
+  <div class="brand">POPE<span>—NP</span></div>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#field">Field Notes</a></li>
+    <li><a href="#targets">Targets</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow"><span class="dot"></span> mechanical engineering — purdue — class of 2027</div>
+  <h1 class="title">Engineering the <em>electric transition.</em></h1>
+  <p class="hero-sub">I design battery, motor, and power systems for electric vehicles — work driven by a simple bet: the cleaner transportation gets, the more of the outdoors stays worth stepping into.</p>
+  <div class="hero-meta">
+    <div>Focus<strong>EV battery & propulsion systems</strong></div>
+    <div>Leadership<strong>President, EV Club — $30k budget, 20 engineers</strong></div>
+    <div>Manufacturing<strong>CNC · sheet metal · composites · 3D print</strong></div>
+  </div>
+</header>
+
+<section id="work">
+  <div class="section-head">
+    <div>
+      <div class="label">Selected Work</div>
+      <h2>Systems I've built</h2>
+    </div>
+    <p>Each project below started as a constraint — weight, sealing, budget — and ended as a working system, tested past the point of comfort.</p>
+  </div>
+
+  <div class="projects">
+    <div class="card">
+      <div class="idx">01 / BATTERY</div>
+      <h3>Half-Pack Battery</h3>
+      <div class="role">EV Grand Prix — Design Lead</div>
+      <p class="desc">Rebuilt a competition EV's battery pack from the ground up using sheet-metal fabrication and 3D-printed structural components, cutting pack weight nearly in half without losing capacity.</p>
+      <div class="spec-row">
+        <div class="spec"><span class="num">−50%</span><span class="lbl">Weight vs. baseline</span></div>
+        <div class="spec"><span class="num">Al + PETG</span><span class="lbl">Materials</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="idx">02 / ROBOTICS</div>
+      <h3>SCARA Robotic Arm</h3>
+      <div class="role">Multi-university collaboration</div>
+      <p class="desc">Designed a multi-DOF SCARA arm through iterative prototyping cycles, coordinating across teams at partner universities to converge on a shared mechanical spec.</p>
+      <div class="spec-row">
+        <div class="spec"><span class="num">4-DOF</span><span class="lbl">Configuration</span></div>
+        <div class="spec"><span class="num">3 rev.</span><span class="lbl">Prototype cycles</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="idx">03 / MARINE EV</div>
+      <h3>Electric Paddleboard Fin</h3>
+      <div class="role">Independent build</div>
+      <p class="desc">Integrated multiple small electric motors into a paddleboard fin housing — solving for waterproof sealing and battery placement in a tightly constrained, wet-environment volume.</p>
+      <div class="spec-row">
+        <div class="spec"><span class="num">IP-sealed</span><span class="lbl">Enclosure</span></div>
+        <div class="spec"><span class="num">Multi-motor</span><span class="lbl">Drive layout</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="idx">04 / DRIVETRAIN</div>
+      <h3>Electric Bike Conversion</h3>
+      <div class="role">Independent build</div>
+      <p class="desc">Converted a standard bike to mid-drive electric assist, wiring controller, motor, and battery systems into a single reliable powertrain — early hands-on foundation for later EV work.</p>
+      <div class="spec-row">
+        <div class="spec"><span class="num">Mid-drive</span><span class="lbl">Motor position</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="idx">05 / VALIDATION</div>
+      <h3>Shockwave Motors</h3>
+      <div class="role">Propulsion Testing</div>
+      <p class="desc">Ran structural and performance validation on motorcycle propulsion systems, translating directly to real-world testing rigor for any propulsion platform — ground, water, or air.</p>
+      <div class="spec-row">
+        <div class="spec"><span class="num">FEA</span><span class="lbl">Analysis method</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="idx">06 / CONTROLS</div>
+      <h3>Endeavor Composites</h3>
+      <div class="role">Production Line Controls</div>
+      <p class="desc">Built an AutomationDirect Click PLUS PLC control system from scratch for a composites production line — industrial controls experience that scales to any manufacturing floor.</p>
+      <div class="spec-row">
+        <div class="spec"><span class="num">PLC</span><span class="lbl">From scratch</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="field">
+  <div class="fieldnotes">
+    <div class="copy">
+      <div class="label" style="font-family:'IBM Plex Mono',monospace;color:var(--sage);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;">Field Notes</div>
+      <h2 style="margin:10px 0 20px; font-size:clamp(1.8rem,4vw,2.6rem);">Why I care about grams and miles</h2>
+      <p><strong>Time outside is what keeps the "why" in view.</strong> Hiking and climbing aren't research for my engineering — they're the reason I want the work to matter. Clean air on a ridgeline and a quiet trail are easy to take for granted until you think about what keeps them that way.</p>
+      <p>That's the throughline to electrification for me. Transportation is one of the largest sources of emissions, and every gram and every watt-hour I can make a battery pack do more efficiently is a small argument for cleaner air and fewer places we have to worry about protecting.</p>
+      <p>It's why the sustainability-minded companies on my list — EV manufacturers, clean energy, and materials innovators — feel like a continuation of the same values, not a separate track from my coursework.</p>
+    </div>
+    <div class="curve-box">
+      <svg viewBox="0 0 400 220" width="100%" height="220">
+        <line x1="20" y1="190" x2="380" y2="190" stroke="#3a4f46" stroke-width="1"/>
+        <line x1="20" y1="20" x2="20" y2="190" stroke="#3a4f46" stroke-width="1"/>
+        <path d="M20,60 L90,60 L90,110 L160,110 L160,80 L230,80 L230,150 L300,150 L300,100 L380,100"
+              fill="none" stroke="#e0954f" stroke-width="2.5"/>
+        <path d="M20,180 C90,120 160,170 230,90 C300,40 340,60 380,30"
+              fill="none" stroke="#8fae8b" stroke-width="2" stroke-dasharray="4 4" opacity="0.8"/>
+      </svg>
+      <div class="cap">— Copper: battery discharge curve · Sage: a ridgeline, for scale —</div>
+    </div>
+  </div>
+</section>
+
+<section id="targets">
+  <div class="section-head">
+    <div>
+      <div class="label">Where This Points</div>
+      <h2>Companies I'm building toward</h2>
+    </div>
+    <p>Electric vehicles, clean energy, and materials — teams working on the transition to a lower-carbon transportation system.</p>
+  </div>
+  <div class="targets">
+    <div class="chip on">Rivian</div>
+    <div class="chip on">LiveWire</div>
+    <div class="chip on">Redwood Materials</div>
+    <div class="chip">Pivotal</div>
+    <div class="chip">magniX</div>
+    <div class="chip on">Terra CO2</div>
+    <div class="chip">Wisk Aero</div>
+    <div class="chip">QuantumScape</div>
+  </div>
+</section>
+
+<footer id="contact">
+  <h2>Let's build the electric transition, one system at a time.</h2>
+  <div class="contact">
+    nathanp2023@gmail.com<br>
+    <a href="#">Resume (PDF)</a><br>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+</body>
+</html>
