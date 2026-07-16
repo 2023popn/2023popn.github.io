@@ -239,21 +239,36 @@
     margin-top:14px;
   }
  
-  /* ---------- companies strip ---------- */
-  .targets{
-    display:flex; flex-wrap:wrap; gap:12px;
-  }
-  .chip{
+  /* ---------- what I'm looking for ---------- */
+  .valuegrid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+    gap:1px;
+    background:var(--line);
     border:1px solid var(--line);
-    padding:8px 16px;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.78rem;
-    color:var(--paper-dim);
-    letter-spacing:0.04em;
   }
-  .chip.on{
-    border-color:var(--copper);
-    color:var(--copper-bright);
+  .valuecard{
+    background:var(--bg);
+    padding:28px 24px;
+    transition:background 0.25s ease;
+  }
+  .valuecard:hover{ background:var(--bg-2); }
+  .valuecard .vidx{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--copper);
+    font-size:0.78rem;
+    letter-spacing:0.1em;
+  }
+  .valuecard h3{
+    font-size:1.25rem;
+    margin-top:10px;
+    color:var(--paper);
+  }
+  .valuecard p{
+    color:var(--paper-dim);
+    font-size:0.9rem;
+    line-height:1.55;
+    margin-top:12px;
   }
  
   /* ---------- footer ---------- */
@@ -292,7 +307,7 @@
   <ul>
     <li><a href="projects.html">Work</a></li>
     <li><a href="#field">Field Notes</a></li>
-    <li><a href="#targets">Targets</a></li>
+    <li><a href="#targets">What I'm Looking For</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -410,19 +425,31 @@
   <div class="section-head">
     <div>
       <div class="label">Where This Points</div>
-      <h2>Companies I'm building toward</h2>
+      <h2>What I'm looking for</h2>
     </div>
-    <p>Electric vehicles, clean energy, and materials — teams working on the transition to a lower-carbon transportation system.</p>
+    <p>Less about a specific logo, more about the kind of team and problem I want to spend my time on.</p>
   </div>
-  <div class="targets">
-    <div class="chip on">Rivian</div>
-    <div class="chip on">LiveWire</div>
-    <div class="chip on">Redwood Materials</div>
-    <div class="chip">Pivotal</div>
-    <div class="chip">magniX</div>
-    <div class="chip on">Terra CO2</div>
-    <div class="chip">Wisk Aero</div>
-    <div class="chip">QuantumScape</div>
+  <div class="valuegrid">
+    <div class="valuecard">
+      <div class="vidx">01</div>
+      <h3>Hardware, not just slides</h3>
+      <p>I want to be near the physical build — testing, fabricating, and iterating on real parts, not just modeling them.</p>
+    </div>
+    <div class="valuecard">
+      <div class="vidx">02</div>
+      <h3>A mission I'd defend</h3>
+      <p>Work that ties back to cleaner energy or transportation, where I can explain why it matters and mean it.</p>
+    </div>
+    <div class="valuecard">
+      <div class="vidx">03</div>
+      <h3>Small team, real ownership</h3>
+      <p>A place where an early-career engineer can own a system end to end, not just one component of one component.</p>
+    </div>
+    <div class="valuecard">
+      <div class="vidx">04</div>
+      <h3>Fast iteration over perfect planning</h3>
+      <p>Teams that prototype, test, and revise quickly — the same loop I've relied on in every project on this site.</p>
+    </div>
   </div>
 </section>
  
@@ -431,7 +458,8 @@
   <div class="contact">
     nathanp2023@gmail.com<br>
     <a href="#">Resume (PDF)</a><br>
-    <a href="#">LinkedIn</a>
+    <a href="#">LinkedIn</a><br>
+    <span style="color:var(--paper-muted); font-size:0.8rem;">Built with Claude — code on <a href="https://github.com/2023popn" style="border-bottom:1px solid var(--copper);">GitHub</a></span>
   </div>
 </footer>
  
