@@ -29,7 +29,7 @@
     -webkit-font-smoothing:antialiased;
   }
   ::selection{ background:var(--copper); color:#182420; }
-
+ 
   h1,h2,h3{
     font-family:'Big Shoulders Display', sans-serif;
     text-transform:uppercase;
@@ -37,9 +37,9 @@
     letter-spacing:0.01em;
   }
   .mono{ font-family:'IBM Plex Mono', monospace; }
-
+ 
   a{ color:var(--copper-bright); }
-
+ 
   /* ---------- topo/circuit background ---------- */
   .contours{
     position:absolute; inset:0;
@@ -47,7 +47,7 @@
     opacity:0.35;
     pointer-events:none;
   }
-
+ 
   /* ---------- nav ---------- */
   nav{
     position:sticky; top:0; z-index:20;
@@ -78,7 +78,7 @@
     font-family:'IBM Plex Mono', monospace;
   }
   nav a:hover{ color:var(--copper-bright); }
-
+ 
   /* ---------- hero ---------- */
   header.hero{
     position:relative;
@@ -138,7 +138,7 @@
     letter-spacing:0;
     margin-top:2px;
   }
-
+ 
   /* ---------- section shell ---------- */
   section{ padding: 10vh 6vw; border-bottom:1px solid var(--line); position:relative; }
   .section-head{
@@ -157,7 +157,7 @@
   .section-head p{
     max-width:38ch; color:var(--paper-muted); font-size:0.95rem; line-height:1.5;
   }
-
+ 
   /* ---------- projects ---------- */
   .projects{
     display:grid;
@@ -207,7 +207,14 @@
   }
   .spec .num{ color:var(--copper-bright); font-size:1.15rem; display:block; }
   .spec .lbl{ color:var(--paper-muted); font-size:0.68rem; text-transform:uppercase; letter-spacing:0.06em; }
-
+  .card .view-more{
+    display:inline-block; margin-top:18px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--copper-bright); text-decoration:none;
+  }
+  .card .view-more:hover{ color:var(--paper); }
+ 
   /* ---------- field notes / outdoors ---------- */
   .fieldnotes{
     display:grid;
@@ -231,7 +238,7 @@
     text-transform:uppercase; letter-spacing:0.06em;
     margin-top:14px;
   }
-
+ 
   /* ---------- companies strip ---------- */
   .targets{
     display:flex; flex-wrap:wrap; gap:12px;
@@ -248,7 +255,7 @@
     border-color:var(--copper);
     color:var(--copper-bright);
   }
-
+ 
   /* ---------- footer ---------- */
   footer{
     padding:8vh 6vw 6vh;
@@ -265,7 +272,7 @@
 </style>
 </head>
 <body>
-
+ 
 <svg class="contours" viewBox="0 0 1200 1400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
@@ -279,17 +286,17 @@
   <path d="M-50,540 C260,490 360,610 560,560 C760,510 830,390 1140,420" fill="none" stroke="url(#fade)" stroke-width="1.5"/>
   <path d="M-50,620 C280,570 380,680 580,630 C780,580 840,470 1170,500" fill="none" stroke="url(#fade)" stroke-width="1.5"/>
 </svg>
-
+ 
 <nav>
   <div class="brand">POPE<span>—NP</span></div>
   <ul>
-    <li><a href="#work">Work</a></li>
+    <li><a href="projects.html">Work</a></li>
     <li><a href="#field">Field Notes</a></li>
     <li><a href="#targets">Targets</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
-
+ 
 <header class="hero">
   <div class="eyebrow"><span class="dot"></span> mechanical engineering — purdue — class of 2027</div>
   <h1 class="title">Engineering the <em>electric transition.</em></h1>
@@ -300,7 +307,7 @@
     <div>Manufacturing<strong>CNC · sheet metal · composites · 3D print</strong></div>
   </div>
 </header>
-
+ 
 <section id="work">
   <div class="section-head">
     <div>
@@ -309,7 +316,7 @@
     </div>
     <p>Each project below started as a constraint — weight, sealing, budget — and ended as a working system, tested past the point of comfort.</p>
   </div>
-
+ 
   <div class="projects">
     <div class="card">
       <div class="idx">01 / BATTERY</div>
@@ -318,10 +325,10 @@
       <p class="desc">Rebuilt a competition EV's battery pack from the ground up using sheet-metal fabrication and 3D-printed structural components, cutting pack weight nearly in half without losing capacity.</p>
       <div class="spec-row">
         <div class="spec"><span class="num">−50%</span><span class="lbl">Weight vs. baseline</span></div>
-        <div class="spec"><span class="num">Al + PETG</span><span class="lbl">Materials</span></div>
-      </div>
+        <div class="spec"><span class="num">Al + PETG</span><span class="lbl">Materials</span></div>    </div>
+      <a class="view-more" href="projects.html#halfpack">View case study &rarr;</a>
     </div>
-
+ 
     <div class="card">
       <div class="idx">02 / ROBOTICS</div>
       <h3>SCARA Robotic Arm</h3>
@@ -329,10 +336,10 @@
       <p class="desc">Designed a multi-DOF SCARA arm through iterative prototyping cycles, coordinating across teams at partner universities to converge on a shared mechanical spec.</p>
       <div class="spec-row">
         <div class="spec"><span class="num">4-DOF</span><span class="lbl">Configuration</span></div>
-        <div class="spec"><span class="num">3 rev.</span><span class="lbl">Prototype cycles</span></div>
-      </div>
+        <div class="spec"><span class="num">3 rev.</span><span class="lbl">Prototype cycles</span></div>    </div>
+      <a class="view-more" href="projects.html#scara">View case study &rarr;</a>
     </div>
-
+ 
     <div class="card">
       <div class="idx">03 / MARINE EV</div>
       <h3>Electric Paddleboard Fin</h3>
@@ -340,42 +347,42 @@
       <p class="desc">Integrated multiple small electric motors into a paddleboard fin housing — solving for waterproof sealing and battery placement in a tightly constrained, wet-environment volume.</p>
       <div class="spec-row">
         <div class="spec"><span class="num">IP-sealed</span><span class="lbl">Enclosure</span></div>
-        <div class="spec"><span class="num">Multi-motor</span><span class="lbl">Drive layout</span></div>
-      </div>
+        <div class="spec"><span class="num">Multi-motor</span><span class="lbl">Drive layout</span></div>    </div>
+      <a class="view-more" href="projects.html#finmotor">View case study &rarr;</a>
     </div>
-
+ 
     <div class="card">
       <div class="idx">04 / DRIVETRAIN</div>
       <h3>Electric Bike Conversion</h3>
       <div class="role">Independent build</div>
       <p class="desc">Converted a standard bike to mid-drive electric assist, wiring controller, motor, and battery systems into a single reliable powertrain — early hands-on foundation for later EV work.</p>
       <div class="spec-row">
-        <div class="spec"><span class="num">Mid-drive</span><span class="lbl">Motor position</span></div>
-      </div>
+        <div class="spec"><span class="num">Mid-drive</span><span class="lbl">Motor position</span></div>    </div>
+      <a class="view-more" href="projects.html#ebike">View case study &rarr;</a>
     </div>
-
+ 
     <div class="card">
       <div class="idx">05 / VALIDATION</div>
       <h3>Shockwave Motors</h3>
       <div class="role">Propulsion Testing</div>
       <p class="desc">Ran structural and performance validation on motorcycle propulsion systems, translating directly to real-world testing rigor for any propulsion platform — ground, water, or air.</p>
       <div class="spec-row">
-        <div class="spec"><span class="num">FEA</span><span class="lbl">Analysis method</span></div>
-      </div>
+        <div class="spec"><span class="num">FEA</span><span class="lbl">Analysis method</span></div>    </div>
+      <a class="view-more" href="projects.html#shockwave">View case study &rarr;</a>
     </div>
-
+ 
     <div class="card">
       <div class="idx">06 / CONTROLS</div>
       <h3>Endeavor Composites</h3>
       <div class="role">Production Line Controls</div>
       <p class="desc">Built an AutomationDirect Click PLUS PLC control system from scratch for a composites production line — industrial controls experience that scales to any manufacturing floor.</p>
       <div class="spec-row">
-        <div class="spec"><span class="num">PLC</span><span class="lbl">From scratch</span></div>
-      </div>
+        <div class="spec"><span class="num">PLC</span><span class="lbl">From scratch</span></div>    </div>
+      <a class="view-more" href="projects.html#endeavor">View case study &rarr;</a>
     </div>
   </div>
 </section>
-
+ 
 <section id="field">
   <div class="fieldnotes">
     <div class="copy">
@@ -398,7 +405,7 @@
     </div>
   </div>
 </section>
-
+ 
 <section id="targets">
   <div class="section-head">
     <div>
@@ -418,7 +425,7 @@
     <div class="chip">QuantumScape</div>
   </div>
 </section>
-
+ 
 <footer id="contact">
   <h2>Let's build the electric transition, one system at a time.</h2>
   <div class="contact">
@@ -427,6 +434,7 @@
     <a href="#">LinkedIn</a>
   </div>
 </footer>
-
+ 
 </body>
 </html>
+ 
