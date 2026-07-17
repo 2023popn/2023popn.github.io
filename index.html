@@ -173,6 +173,19 @@
     transition:background 0.25s ease;
   }
   .card:hover{ background:var(--bg-2); }
+  .teaser-card{
+    display:none;
+    background:var(--bg-2);
+    border:1px dashed var(--line);
+  }
+  .teaser-card h3{ color:var(--paper-dim); }
+  .teaser-card .role{ color:var(--paper-muted); }
+  .teaser-card .desc{ color:var(--paper-muted); }
+  /* Only show the teaser card once there's enough width for a row that
+     would otherwise leave the 6 real projects unevenly stretched */
+  @media (min-width: 900px){
+    .teaser-card{ display:block; }
+  }
   .card .idx{
     font-family:'IBM Plex Mono', monospace;
     color:var(--copper);
@@ -318,7 +331,7 @@
   <p class="hero-sub">I'm a mechanical engineering student focused on mechanical design for electric power systems. From a competition battery pack to custom EV builds, my goal is to improve electric vehicles so that more of the outdoors stays worth exploring.</p>
   <div class="hero-meta">
     <div>Focus<strong>Electromechanical design for clean transportation</strong></div>
-    <div>Leadership<strong>President, Team Lead, Safety Officer</strong></div>
+    <div>Leadership<strong>President, Team Lead, Safety Officer — Purdue EV Club</strong></div>
     <div>Manufacturing<strong>CNC machining · sheet metal · composites · 3D printing · control wiring</strong></div>
   </div>
 </header>
@@ -327,9 +340,9 @@
   <div class="section-head">
     <div>
       <div class="label">Selected Work</div>
-      <h2>Systems I've built</h2>
+      <h2>My Projects</h2>
     </div>
-    <p>Each project below started as a constraint — weight, sealing, budget — and ended as a working system, tested past the point of comfort.</p>
+    <p>A look at what I've actually built, not just studied.</p>
   </div>
  
   <div class="projects">
@@ -394,6 +407,13 @@
       <div class="spec-row">
         <div class="spec"><span class="num">PLC</span><span class="lbl">From scratch</span></div>    </div>
       <a class="view-more" href="projects.html#endeavor">View case study &rarr;</a>
+    </div>
+ 
+    <div class="card teaser-card">
+      <div class="idx">07 / IN PROGRESS</div>
+      <h3>More on the way</h3>
+      <div class="role">Currently exploring</div>
+      <p class="desc">This spot's saved for whatever I'm building next. Check back for updates, or take a look at what's in progress now on GitHub.</p>
     </div>
   </div>
 </section>
