@@ -196,25 +196,18 @@
 (function(){
   function updateTeaserVisibility(){
     var teaser = document.querySelector('.teaser-card');
-    var cards = Array.prototype.slice.call(document.querySelectorAll('.projects .card:not(.teaser-card)'));
-    if (!teaser || cards.length === 0) return;
+    var cards = document.querySelectorAll('.projects .card:not(.teaser-card)');
+    if (!teaser || !cards.length) return;
  
-    // Hide the teaser first so it doesn't affect the row measurement.
-    teaser.style.display = 'none';
+    // Temporarily show it so it participates in layout and we can see
+    // whether it actually lands in the same row as the last real card,
+    // or gets pushed to a new row by itself.
+    teaser.style.display = 'block';
  
-    var rows = [];
-    var lastTop = null;
-    cards.forEach(function(card){
-      var top = Math.round(card.offsetTop);
-      if (top !== lastTop) { rows.push(0); lastTop = top; }
-      rows[rows.length - 1]++;
-    });
+    var lastCard = cards[cards.length - 1];
+    var sameRow = Math.round(lastCard.offsetTop) === Math.round(teaser.offsetTop);
  
-    var firstRowCount = rows[0];
-    var lastRowCount = rows[rows.length - 1];
-    var hasLeftoverSpace = rows.length > 0 && lastRowCount < firstRowCount;
- 
-    teaser.style.display = hasLeftoverSpace ? 'block' : 'none';
+    teaser.style.display = sameRow ? 'block' : 'none';
   }
  
   var resizeTimer;
