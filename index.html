@@ -6,298 +6,7 @@
 <title>Nathan Pope — Mechanical Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg: #182420;
-    --bg-2: #1f2f29;
-    --line: #3a4f46;
-    --copper: #c9773f;
-    --copper-bright: #e0954f;
-    --sage: #8fae8b;
-    --paper: #eee8dc;
-    --paper-dim: #b9baaf;
-    --paper-muted: #9aa89c;
-    --radius: 2px;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--paper);
-    font-family:'IBM Plex Sans', sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
-  ::selection{ background:var(--copper); color:#182420; }
- 
-  h1,h2,h3{
-    font-family:'Big Shoulders Display', sans-serif;
-    text-transform:uppercase;
-    margin:0;
-    letter-spacing:0.01em;
-  }
-  .mono{ font-family:'IBM Plex Mono', monospace; }
- 
-  a{ color:var(--copper-bright); }
- 
-  /* ---------- topo/circuit background ---------- */
-  .contours{
-    position:absolute; inset:0;
-    width:100%; height:100%;
-    opacity:0.35;
-    pointer-events:none;
-  }
- 
-  /* ---------- nav ---------- */
-  nav{
-    position:sticky; top:0; z-index:20;
-    display:flex; justify-content:space-between; align-items:center;
-    padding: 18px 6vw;
-    background:rgba(24,36,32,0.85);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--line);
-  }
-  nav .brand{
-    font-family:'Big Shoulders Display', sans-serif;
-    font-weight:800;
-    font-size:1.15rem;
-    letter-spacing:0.04em;
-    text-transform:uppercase;
-    color:var(--paper);
-  }
-  nav .brand span{ color:var(--copper-bright); }
-  nav ul{
-    list-style:none; display:flex; gap:28px; margin:0; padding:0;
-  }
-  nav a{
-    color:var(--paper-dim);
-    text-decoration:none;
-    font-size:0.8rem;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    font-family:'IBM Plex Mono', monospace;
-  }
-  nav a:hover{ color:var(--copper-bright); }
- 
-  /* ---------- hero ---------- */
-  header.hero{
-    position:relative;
-    padding: 12vh 6vw 10vh;
-    overflow:hidden;
-    border-bottom:1px solid var(--line);
-  }
-  .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    color:var(--sage);
-    font-size:0.8rem;
-    letter-spacing:0.15em;
-    text-transform:uppercase;
-    display:flex; align-items:center; gap:10px;
-    margin-bottom:22px;
-  }
-  .eyebrow .dot{
-    width:7px; height:7px; border-radius:50%;
-    background:var(--copper-bright);
-    box-shadow:0 0 8px var(--copper-bright);
-  }
-  h1.title{
-    font-size: clamp(2.6rem, 7vw, 6rem);
-    line-height:0.95;
-    font-weight:800;
-    max-width:14ch;
-  }
-  h1.title em{
-    font-style:normal;
-    color:var(--copper-bright);
-  }
-  .hero-sub{
-    max-width:52ch;
-    margin-top:28px;
-    font-size:1.1rem;
-    line-height:1.6;
-    color:var(--paper-dim);
-  }
-  .hero-meta{
-    display:flex; gap:36px; margin-top:48px; flex-wrap:wrap;
-  }
-  .hero-meta div{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.75rem;
-    color:var(--paper-muted);
-    text-transform:uppercase;
-    letter-spacing:0.06em;
-    border-left:2px solid var(--copper);
-    padding-left:10px;
-  }
-  .hero-meta strong{
-    display:block;
-    color:var(--paper);
-    font-size:0.95rem;
-    font-family:'IBM Plex Sans', sans-serif;
-    text-transform:none;
-    letter-spacing:0;
-    margin-top:2px;
-  }
- 
-  /* ---------- section shell ---------- */
-  section{ padding: 10vh 6vw; border-bottom:1px solid var(--line); position:relative; }
-  .section-head{
-    display:flex; justify-content:space-between; align-items:flex-end;
-    margin-bottom:56px; flex-wrap:wrap; gap:16px;
-  }
-  .section-head .label{
-    font-family:'IBM Plex Mono', monospace;
-    color:var(--sage);
-    font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase;
-  }
-  .section-head h2{
-    font-size:clamp(1.8rem,4vw,3rem);
-    margin-top:6px;
-  }
-  .section-head p{
-    max-width:38ch; color:var(--paper-muted); font-size:0.95rem; line-height:1.5;
-  }
- 
-  /* ---------- projects ---------- */
-  .projects{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
-    gap:1px;
-    background:var(--line);
-    border:1px solid var(--line);
-  }
-  .card{
-    background:var(--bg);
-    padding:32px 28px;
-    position:relative;
-    transition:background 0.25s ease;
-  }
-  .card:hover{ background:var(--bg-2); }
-  .teaser-card{
-    display:none;
-    background:var(--bg-2);
-    border:1px dashed var(--line);
-  }
-  .teaser-card h3{ color:var(--paper-dim); }
-  .teaser-card .role{ color:var(--paper-muted); }
-  .teaser-card .desc{ color:var(--paper-muted); }
-  /* Only show the teaser card once there's enough width for a row that
-     would otherwise leave the 6 real projects unevenly stretched */
-  @media (min-width: 900px){
-    .teaser-card{ display:block; }
-  }
-  .card .idx{
-    font-family:'IBM Plex Mono', monospace;
-    color:var(--copper);
-    font-size:0.78rem;
-    letter-spacing:0.1em;
-  }
-  .card h3{
-    font-size:1.5rem;
-    margin-top:10px;
-    color:var(--paper);
-  }
-  .card .role{
-    color:var(--sage);
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.72rem;
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    margin-top:6px;
-  }
-  .card p.desc{
-    color:var(--paper-dim);
-    font-size:0.92rem;
-    line-height:1.55;
-    margin-top:14px;
-  }
-  .spec-row{
-    display:flex; gap:22px; margin-top:20px; flex-wrap:wrap;
-    border-top:1px solid var(--line); padding-top:14px;
-  }
-  .spec{
-    font-family:'IBM Plex Mono', monospace;
-  }
-  .spec .num{ color:var(--copper-bright); font-size:1.15rem; display:block; }
-  .spec .lbl{ color:var(--paper-muted); font-size:0.68rem; text-transform:uppercase; letter-spacing:0.06em; }
-  .card .view-more{
-    display:inline-block; margin-top:18px;
-    font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
-    text-transform:uppercase; letter-spacing:0.06em;
-    color:var(--copper-bright); text-decoration:none;
-  }
-  .card .view-more:hover{ color:var(--paper); }
- 
-  /* ---------- field notes / outdoors ---------- */
-  .fieldnotes{
-    display:grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap:60px;
-    align-items:center;
-  }
-  @media (max-width:800px){ .fieldnotes{ grid-template-columns:1fr; } }
-  .fieldnotes .copy p{
-    color:var(--paper-dim); line-height:1.7; font-size:1rem; margin-bottom:16px;
-  }
-  .fieldnotes .copy p strong{ color:var(--paper); }
-  .curve-box{
-    border:1px solid var(--line);
-    background:var(--bg-2);
-    padding:20px;
-  }
-  .curve-box .cap{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.72rem; color:var(--paper-muted);
-    text-transform:uppercase; letter-spacing:0.06em;
-    margin-top:14px;
-  }
- 
-  /* ---------- what I'm looking for ---------- */
-  .valuegrid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
-    gap:1px;
-    background:var(--line);
-    border:1px solid var(--line);
-  }
-  .valuecard{
-    background:var(--bg);
-    padding:28px 24px;
-    transition:background 0.25s ease;
-  }
-  .valuecard:hover{ background:var(--bg-2); }
-  .valuecard .vidx{
-    font-family:'IBM Plex Mono', monospace;
-    color:var(--copper);
-    font-size:0.78rem;
-    letter-spacing:0.1em;
-  }
-  .valuecard h3{
-    font-size:1.25rem;
-    margin-top:10px;
-    color:var(--paper);
-  }
-  .valuecard p{
-    color:var(--paper-dim);
-    font-size:0.9rem;
-    line-height:1.55;
-    margin-top:12px;
-  }
- 
-  /* ---------- footer ---------- */
-  footer{
-    padding:8vh 6vw 6vh;
-    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;
-  }
-  footer h2{ font-size:clamp(2rem,5vw,3.4rem); max-width:16ch; }
-  footer .contact{
-    font-family:'IBM Plex Mono', monospace;
-    color:var(--paper-dim);
-    font-size:0.9rem;
-    line-height:2;
-  }
-  footer .contact a{ color:var(--paper); text-decoration:none; border-bottom:1px solid var(--copper); }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
  
@@ -331,7 +40,7 @@
   <p class="hero-sub">I'm a mechanical engineering student focused on mechanical design for electric power systems. From a competition battery pack to custom EV builds, my goal is to improve electric vehicles so that more of the outdoors stays worth exploring.</p>
   <div class="hero-meta">
     <div>Focus<strong>Electromechanical design for clean transportation</strong></div>
-    <div>Leadership<strong>President, Team Lead, Safety Officer — Purdue EV Club</strong></div>
+    <div>Leadership<strong>President, Team Lead, Safety Officer</strong></div>
     <div>Manufacturing<strong>CNC machining · sheet metal · composites · 3D printing · control wiring</strong></div>
   </div>
 </header>
@@ -483,5 +192,41 @@
   </div>
 </footer>
  
+<script>
+(function(){
+  function updateTeaserVisibility(){
+    var teaser = document.querySelector('.teaser-card');
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.projects .card:not(.teaser-card)'));
+    if (!teaser || cards.length === 0) return;
+ 
+    // Hide the teaser first so it doesn't affect the row measurement.
+    teaser.style.display = 'none';
+ 
+    var rows = [];
+    var lastTop = null;
+    cards.forEach(function(card){
+      var top = Math.round(card.offsetTop);
+      if (top !== lastTop) { rows.push(0); lastTop = top; }
+      rows[rows.length - 1]++;
+    });
+ 
+    var firstRowCount = rows[0];
+    var lastRowCount = rows[rows.length - 1];
+    var hasLeftoverSpace = rows.length > 0 && lastRowCount < firstRowCount;
+ 
+    teaser.style.display = hasLeftoverSpace ? 'block' : 'none';
+  }
+ 
+  var resizeTimer;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(updateTeaserVisibility, 150);
+  });
+  window.addEventListener('load', updateTeaserVisibility);
+  document.addEventListener('DOMContentLoaded', updateTeaserVisibility);
+})();
+</script>
+ 
 </body>
 </html>
+ 
