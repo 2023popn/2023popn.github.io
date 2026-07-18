@@ -200,14 +200,16 @@ section{ padding: 10vh 6vw; border-bottom:1px solid var(--line); position:relati
   padding:32px 28px;
   position:relative;
   transition:background 0.25s ease;
-  flex:0 1 300px; /* fixed-ish width, doesn't grow to absorb row slack */
+  flex:1 1 280px; /* can grow to fill a row evenly, up to max-width below */
+  max-width:420px;
 }
 .card:hover{ background:var(--bg-2); }
 .teaser-card{
   display:none;
   background:var(--bg-2);
   border:1px dashed var(--line);
-  flex:1 1 300px; /* grows to fill whatever space is left in its row */
+  flex:1 1 300px; /* grows freely, no max-width, to soak up whatever's left */
+  max-width:none;
 }
 .teaser-card h3{ color:var(--paper-dim); }
 .teaser-card .role{ color:var(--paper-muted); }
