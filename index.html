@@ -196,7 +196,6 @@
 (function(){
   var MIN_WIDTH = 280;
   var MAX_WIDTH = 420;
-  var GAP = 1;
  
   function layoutProjects(){
     var container = document.querySelector('.projects');
@@ -204,11 +203,27 @@
     var teaser = document.querySelector('.teaser-card');
     if (!container || !cards.length) return;
  
-    // Figure out one column width that's shared by every row, so rows
-    // line up instead of each row growing its cards independently.
+    // Pass 1: let the browser show us how many cards actually fit per row
+    // at the minimum width, instead of us trying to predict it with math.
+    cards.forEach(function(card){
+      card.style.flex = '0 0 ' + MIN_WIDTH + 'px';
+      card.style.maxWidth = MIN_WIDTH + 'px';
+    });
+    if (teaser) teaser.style.display = 'none';
+ 
+    var firstTop = Math.round(cards[0].offsetTop);
+    var columns = 0;
+    for (var i = 0; i < cards.length; i++){
+      if (Math.round(cards[i].offsetTop) === firstTop) columns++;
+      else break;
+    }
+    if (columns < 1) columns = 1;
+ 
+    // Pass 2: now that we know how many actually fit per row, compute the
+    // one shared width that fills a full row of that many cards exactly,
+    // and apply it to every card so every row lines up.
     var containerWidth = container.clientWidth;
-    var columns = Math.max(1, Math.floor((containerWidth + GAP) / (MIN_WIDTH + GAP)));
-    var width = (containerWidth - (columns - 1) * GAP) / columns;
+    var width = (containerWidth - (columns - 1)) / columns; // 1px gap per CSS
     if (columns > 1 && width > MAX_WIDTH) width = MAX_WIDTH;
  
     cards.forEach(function(card){
@@ -236,6 +251,12 @@
   });
   window.addEventListener('load', layoutProjects);
   document.addEventListener('DOMContentLoaded', layoutProjects);
+ 
+  // Re-run once fonts finish loading, since font swaps can subtly change
+  // available width (e.g. by changing whether a scrollbar is present).
+  if (document.fonts && document.fonts.ready){
+    document.fonts.ready.then(layoutProjects);
+  }
 })();
 </script>
  
