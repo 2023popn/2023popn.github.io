@@ -36,7 +36,7 @@
  
 <header class="hero">
   <div class="eyebrow"><span class="dot"></span> mechanical engineering — purdue — class of 2027</div>
-  <h1 class="title">Building <em>better machines.</em></h1>
+  <h1 class="title">Building toward <em>better machines.</em></h1>
   <p class="hero-sub">I'm a mechanical engineering student focused on mechanical design for electric power systems. From a competition battery pack to custom EV builds, my goal is to improve electric vehicles so that more of the outdoors stays worth exploring.</p>
   <div class="hero-meta">
     <div>Focus<strong>Electromechanical design for clean transportation</strong></div>
@@ -194,29 +194,48 @@
  
 <script>
 (function(){
-  function updateTeaserVisibility(){
-    var teaser = document.querySelector('.teaser-card');
+  var MIN_WIDTH = 280;
+  var MAX_WIDTH = 420;
+  var GAP = 1;
+ 
+  function layoutProjects(){
+    var container = document.querySelector('.projects');
     var cards = document.querySelectorAll('.projects .card:not(.teaser-card)');
-    if (!teaser || !cards.length) return;
+    var teaser = document.querySelector('.teaser-card');
+    if (!container || !cards.length) return;
  
-    // Temporarily show it so it participates in layout and we can see
-    // whether it actually lands in the same row as the last real card,
-    // or gets pushed to a new row by itself.
-    teaser.style.display = 'block';
+    // Figure out one column width that's shared by every row, so rows
+    // line up instead of each row growing its cards independently.
+    var containerWidth = container.clientWidth;
+    var columns = Math.max(1, Math.floor((containerWidth + GAP) / (MIN_WIDTH + GAP)));
+    var width = (containerWidth - (columns - 1) * GAP) / columns;
+    if (columns > 1 && width > MAX_WIDTH) width = MAX_WIDTH;
  
-    var lastCard = cards[cards.length - 1];
-    var sameRow = Math.round(lastCard.offsetTop) === Math.round(teaser.offsetTop);
+    cards.forEach(function(card){
+      card.style.flex = '0 0 ' + width + 'px';
+      card.style.maxWidth = width + 'px';
+    });
  
-    teaser.style.display = sameRow ? 'block' : 'none';
+    if (teaser){
+      teaser.style.flex = '1 1 0';
+      teaser.style.maxWidth = 'none';
+ 
+      // Show it, measure whether it landed in the same row as the last
+      // real card, then hide it again if it got pushed onto its own row.
+      teaser.style.display = 'block';
+      var lastCard = cards[cards.length - 1];
+      var sameRow = Math.round(lastCard.offsetTop) === Math.round(teaser.offsetTop);
+      teaser.style.display = sameRow ? 'block' : 'none';
+    }
   }
  
   var resizeTimer;
   window.addEventListener('resize', function(){
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(updateTeaserVisibility, 150);
+    resizeTimer = setTimeout(layoutProjects, 150);
   });
-  window.addEventListener('load', updateTeaserVisibility);
-  document.addEventListener('DOMContentLoaded', updateTeaserVisibility);
+  window.addEventListener('load', layoutProjects);
+  document.addEventListener('DOMContentLoaded', layoutProjects);
 })();
 </script>
  
