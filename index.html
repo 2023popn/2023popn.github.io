@@ -196,6 +196,7 @@
 (function(){
   var MIN_WIDTH = 280;
   var MAX_WIDTH = 420;
+  var GAP = 1;
  
   function layoutProjects(){
     var container = document.querySelector('.projects');
@@ -203,44 +204,27 @@
     var teaser = document.querySelector('.teaser-card');
     if (!container || !cards.length) return;
  
-    // Pass 1: let the browser show us how many cards actually fit per row
-    // at the minimum width, instead of us trying to predict it with math.
-    cards.forEach(function(card){
-      card.style.flex = '0 0 ' + MIN_WIDTH + 'px';
-      card.style.maxWidth = MIN_WIDTH + 'px';
-    });
-    if (teaser) teaser.style.display = 'none';
- 
-    var firstTop = Math.round(cards[0].offsetTop);
-    var columns = 0;
-    for (var i = 0; i < cards.length; i++){
-      if (Math.round(cards[i].offsetTop) === firstTop) columns++;
-      else break;
-    }
-    if (columns < 1) columns = 1;
- 
-    // Pass 2: now that we know how many actually fit per row, compute the
-    // one shared width that fills a full row of that many cards exactly,
-    // and apply it to every card so every row lines up.
     var containerWidth = container.clientWidth;
-    var width = (containerWidth - (columns - 1)) / columns; // 1px gap per CSS
-    if (columns > 1 && width > MAX_WIDTH) width = MAX_WIDTH;
  
-    cards.forEach(function(card){
-      card.style.flex = '0 0 ' + width + 'px';
-      card.style.maxWidth = width + 'px';
-    });
+    // Pick the largest column count where each column stays >= MIN_WIDTH,
+    // then nudge it up if that would make columns wider than MAX_WIDTH.
+    var cols = Math.max(1, Math.floor((containerWidth + GAP) / (MIN_WIDTH + GAP)));
+    while (cols > 1) {
+      var w = (containerWidth - (cols - 1) * GAP) / cols;
+      if (w <= MAX_WIDTH) break;
+      cols++;
+    }
+ 
+    container.style.setProperty('--cols', cols);
  
     if (teaser){
-      teaser.style.flex = '1 1 0';
-      teaser.style.maxWidth = 'none';
- 
-      // Show it, measure whether it landed in the same row as the last
-      // real card, then hide it again if it got pushed onto its own row.
-      teaser.style.display = 'block';
-      var lastCard = cards[cards.length - 1];
-      var sameRow = Math.round(lastCard.offsetTop) === Math.round(teaser.offsetTop);
-      teaser.style.display = sameRow ? 'block' : 'none';
+      var remainder = cards.length % cols;
+      if (remainder === 0){
+        teaser.style.display = 'none';
+      } else {
+        teaser.style.display = 'block';
+        teaser.style.gridColumn = 'span ' + (cols - remainder);
+      }
     }
   }
  
