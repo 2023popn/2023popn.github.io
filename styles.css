@@ -189,8 +189,8 @@ section{ padding: 10vh 6vw; border-bottom:1px solid var(--line); position:relati
  
 /* ---------- projects grid (index.html) ---------- */
 .projects{
-  display:flex;
-  flex-wrap:wrap;
+  display:grid;
+  grid-template-columns: repeat(var(--cols, 3), 1fr);
   gap:1px;
   background:var(--line);
   border:1px solid var(--line);
@@ -200,16 +200,13 @@ section{ padding: 10vh 6vw; border-bottom:1px solid var(--line); position:relati
   padding:32px 28px;
   position:relative;
   transition:background 0.25s ease;
-  flex:1 1 280px; /* can grow to fill a row evenly, up to max-width below */
-  max-width:420px;
+  min-width:0; /* let grid track control width, don't overflow on content */
 }
 .card:hover{ background:var(--bg-2); }
 .teaser-card{
   display:none;
   background:var(--bg-2);
   border:1px dashed var(--line);
-  flex:1 1 300px; /* grows freely, no max-width, to soak up whatever's left */
-  max-width:none;
 }
 .teaser-card h3{ color:var(--paper-dim); }
 .teaser-card .role{ color:var(--paper-muted); }
